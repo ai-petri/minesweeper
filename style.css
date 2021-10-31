@@ -1,0 +1,29 @@
+body{
+    margin: 0;
+}
+#container{
+    position: absolute;
+    left: 30vw;
+    top: 20vh;
+    width: 800px;
+    height: 600px;
+    background-color: gray;
+    display: grid;
+
+}
+
+td{
+    width: 20px;
+    height: 20px;
+    border-top: 2px solid rgb(200,200,200);
+    border-left: 2px solid rgb(200,200,200);
+    border-right: 2px solid rgb(100,100,100);
+    border-bottom: 2px solid rgb(100,100,100);
+    box-shadow: 1px 1px 1px rgb(50,50,50);
+    text-align: center;
+}
+
+.clicked{
+    border: none;
+    box-shadow: none;
+}
