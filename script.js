@@ -186,6 +186,7 @@ function end()
         el.style.display = "block";
     }
     dead = true;
+    timer.stop();
 }
 
 function reset()
