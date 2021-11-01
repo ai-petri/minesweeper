@@ -12,9 +12,10 @@ var timer =
     set seconds(value)
     {
         let elements = document.querySelector("#timer").children;
+        let arr = (value + "").padStart(elements.length,0).split("");
         for(let i=0; i<elements.length; i++)
         {
-            elements[i].innerHTML = (value + "").padStart(elements.length,0).split("")[i];
+            elements[elements.length - 1 - i].innerHTML = arr[arr.length - 1 - i];
         }
     },
 
