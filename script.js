@@ -2,7 +2,39 @@ var table = document.createElement("table");
 var bomb = document.querySelector("#bomb-template").content.firstElementChild;
 var size = {x:20, y:15};
 var cells =[];
+var timer = 
+{
+    get seconds()
+    {
+        let digits = [...document.querySelector("#timer").children].map(el=>el.innerHTML);
+        return +digits.join("");
+    },
+    set seconds(value)
+    {
+        let elements = document.querySelector("#timer").children;
+        for(let i=0; i<elements.length; i++)
+        {
+            elements[i].innerHTML = (value + "").padStart(elements.length,0).split("")[i];
+        }
+    },
 
+    start()
+    {
+        this.interval = setInterval(e=>this.seconds++, 1000);
+    },
+    stop()
+    {
+        if(this.interval)
+        {
+            clearInterval(this.interval);
+        }
+    },
+    reset()
+    {
+        this.stop();
+        this.seconds = 0;
+    }
+}
 var firstClick = true;
 
 for(let i=0; i<size.y; i++)
@@ -22,6 +54,7 @@ for(let i=0; i<size.y; i++)
                     neighbour.bomb = false;
                 }
                 firstClick = false;
+                timer.start();
             }
             startWalking(j,i);
         });
@@ -129,6 +162,7 @@ function reset()
             cells[i][j].el.innerHTML = "";
             cells[i][j].bomb = Math.random() > 0.8;
         }
-        firstClick = true;
     }
+    firstClick = true;
+    timer.reset();
 }
