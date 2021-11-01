@@ -66,3 +66,7 @@ td{
 lcd-digit{
     fill: red;
 }
+
+.dead, .excited{
+    display: none;
+}

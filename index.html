@@ -18,9 +18,14 @@
             <div id="smiley-container">
                 <svg width="50px" height="50px" viewBox="0 0 20 20">
                     <circle cx="10" cy="10" r="8" fill="yellow"></circle>
-                    <circle cx="6" cy="8" r="1"></circle>
-                    <circle cx="14" cy="8" r="1"></circle>
-                    <path d="M 6 12 A 3 2 0 0 0 14 12" fill="none" stroke="black" stroke-width="0.5"></path>
+                    <circle class="happy" cx="6" cy="8" r="1"></circle>
+                    <circle class="happy" cx="14" cy="8" r="1"></circle>
+                    <circle class="excited" cx="6" cy="8" r="1"></circle>
+                    <circle class="excited" cx="14" cy="8" r="1"></circle>
+                    <path class="dead" d="M 5 7 L 7 9 M 7 7 L 5 9 M 13 7 L 15 9 M 15 7 L 13 9" stroke="black" stroke-width="0.5"></path>
+                    <circle class="excited" cx="10" cy="14" r="2" fill="none" stroke="black" stroke-width="0.5"></circle>
+                    <path class="happy" d="M 6 12 A 3 2 0 0 0 14 12" fill="none" stroke="black" stroke-width="0.5"></path>
+                    <path class="dead" d="M 6 15 A 3 2 0 0 1 14 15" fill="none" stroke="black" stroke-width="0.5"></path>
                 </svg>
             </div>
             <div class="display" id="timer">

@@ -2,6 +2,7 @@ var table = document.createElement("table");
 var bomb = document.querySelector("#bomb-template").content.firstElementChild;
 var size = {x:20, y:15};
 var cells =[];
+var dead = false;
 var bombCounter =
 {
     get count()
@@ -65,6 +66,7 @@ for(let i=0; i<size.y; i++)
     {
         let td = document.createElement("td");
         td.addEventListener("mousedown",e=>{
+            if(dead) return;
             e.target.classList.add("clicked");
             if(firstClick)
             {
@@ -91,6 +93,7 @@ document.querySelector("#container").appendChild(table);
 
 function startWalking(x,y)
 {
+    getExcited();
     if(cells[y][x].bomb)
     {
         end();
@@ -169,8 +172,20 @@ function end()
            }
         }
     }
-    alert("game over");
-    reset();
+
+    for(let el of document.querySelectorAll(".happy"))
+    {
+        el.style.display = "none";
+    }
+    for(let el of document.querySelectorAll(".excited"))
+    {
+        el.style.display = "none";
+    }
+    for(let el of document.querySelectorAll(".dead"))
+    {
+        el.style.display = "block";
+    }
+    dead = true;
 }
 
 function reset()
@@ -187,4 +202,41 @@ function reset()
     firstClick = true;
     timer.reset();
     bombCounter.count = 0;
+
+    for(let el of document.querySelectorAll(".happy"))
+    {
+        el.style.display = "block";
+    }
+    for(let el of document.querySelectorAll(".dead"))
+    {
+        el.style.display = "none";
+    }
+    dead = false;
 }
+
+function getExcited()
+{
+    for(let el of document.querySelectorAll(".happy"))
+    {
+        el.style.display = "none";
+    }
+    for(let el of document.querySelectorAll(".excited"))
+    {
+        el.style.display = "block";
+    }
+    setTimeout(e=>{
+        if(!dead)
+        {
+            for(let el of document.querySelectorAll(".happy"))
+            {
+                el.style.display = "block";
+            }
+        }   
+        for(let el of document.querySelectorAll(".excited"))
+        {
+            el.style.display = "none";
+        }
+    }, 100);
+}
+
+document.querySelector("#smiley-container").addEventListener("click", reset);
