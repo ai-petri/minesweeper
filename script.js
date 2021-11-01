@@ -2,6 +2,24 @@ var table = document.createElement("table");
 var bomb = document.querySelector("#bomb-template").content.firstElementChild;
 var size = {x:20, y:15};
 var cells =[];
+var bombCounter =
+{
+    get count()
+    {
+        let digits = [...document.querySelector("#counter").children].map(el=>el.innerHTML);
+        return +digits.join("");
+    },
+    set count(value)
+    {
+        let elements = document.querySelector("#counter").children;
+        let arr = (value + "").padStart(elements.length,0).split("");
+        for(let i=0; i<elements.length; i++)
+        {
+            elements[elements.length - 1 - i].innerHTML = arr[arr.length - 1 - i];
+        }
+    }
+}
+
 var timer = 
 {
     get seconds()
@@ -36,6 +54,7 @@ var timer =
         this.seconds = 0;
     }
 }
+
 var firstClick = true;
 
 for(let i=0; i<size.y; i++)
@@ -56,6 +75,7 @@ for(let i=0; i<size.y; i++)
                 }
                 firstClick = false;
                 timer.start();
+                bombCounter.count = [].concat(...cells).filter(o=>o.bomb).length;
             }
             startWalking(j,i);
         });
@@ -166,4 +186,5 @@ function reset()
     }
     firstClick = true;
     timer.reset();
+    bombCounter.count = 0;
 }
